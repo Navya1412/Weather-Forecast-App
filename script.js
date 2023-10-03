@@ -1,40 +1,45 @@
-// const apiKey = 'd130fb1b1b7676ce825664e9b2145e4c';
+const apiKey = 'e7f2a44070f4f734b1ba8145c077a931';
 
-function getWeather() {
+async function getWeather() {
   const zipCode = document.getElementById('zipCodeInput').value;
 
-  const lat = '-35.282001';
-  const long = '149.128998';
-//   const part = 'current';
-  const key = 'e7f2a44070f4f734b1ba8145c077a931';
-
   if (zipCode) {
-    // const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&exclude=${part}&appid=${key}`;
-    const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon={long}&appid=${key}'
-    
+    try {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`);
+      const data = await response.json();
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
+      if (response.ok) {
         displayWeather(data);
-      })
-      .catch(error => console.error('Error fetching weather:', error));
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error('Error fetching weather:', error.message);
+      displayError('Error fetching weather. Please try again.');
+    }
   } else {
-    alert('Please enter a valid zip code.');
+    displayError('Please enter a valid zip code.');
   }
 }
 
 function displayWeather(data) {
   const weatherResult = document.getElementById('weatherResult');
 
-  if (data.cod === '404') {
-    weatherResult.innerHTML = `<p>Invalid zip code. Please try again.</p>`;
-  } else {
-    const description = data.weather.description;
-    const temperature = data.main.temp;
-    const cityName = data.name;
+  const description = data.weather[0].description;
+  const temperature = data.main.temp;
+  const cityName = data.name;
+  const humid = data.main.humidity;
+  const visible = data.visibility;
+  const speed = data.speed;
 
-    weatherResult.innerHTML = `<p>Weather in ${cityName}: ${description}</p>
-                              <p>Temperature: ${temperature}°C</p>`;
-  }
+  weatherResult.innerHTML = `<p>Weather in ${cityName}: ${description}</p>
+                            <p>Temperature: ${temperature}°C</p>
+                            <p> Humidity: ${humid} </p>
+                            <p> Visibility: ${visible} </p>
+                            <p> Wind Speed: ${speed} </p>`;
+}
+
+function displayError(message) {
+  const weatherResult = document.getElementById('weatherResult');
+  weatherResult.innerHTML = `<p style="color: red;">${message}</p>`;
 }
