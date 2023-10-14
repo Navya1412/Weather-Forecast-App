@@ -1,3 +1,4 @@
+// 1st attempt 
 // const apiKey = 'e7f2a44070f4f734b1ba8145c077a931';
 
 // async function getWeather() {
@@ -46,6 +47,8 @@
 
 
 
+
+// 2nd attempt - changed zipcode to postcode as the function would only work when for US postcodes
 // const apiKey = 'e7f2a44070f4f734b1ba8145c077a931';
 
 // async function getWeather() {
@@ -86,15 +89,17 @@
 //   weatherResult.innerHTML = `<p style="color: red;">${message}</p>`;
 // }
 
-const apiKey = 'e7f2a44070f4f734b1ba8145c077a931';
+
+
+const openWeatherApiKey = 'e7f2a44070f4f734b1ba8145c077a931';
 
 async function getWeather() {
   const postcode = document.getElementById('postcodeInput').value;
 
   if (postcode) {
     try {
-      const location = await getCoordinates(postcode);
-      const weatherData = await fetchWeatherData(location);
+      const coordinates = await getCoordinates(postcode);
+      const weatherData = await fetchWeatherData(coordinates);
 
       if (weatherData) {
         displayWeather(weatherData);
@@ -111,19 +116,18 @@ async function getWeather() {
 }
 
 async function getCoordinates(postcode) {
-  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${postcode},us&appid=${apiKey}`);
+  const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${postcode}, Australia`);
   const data = await response.json();
 
-  if (response.ok) {
-    return { latitude: data.coord.lat, longitude: data.coord.lon };
+  if (response.ok && data.length > 0) {
+    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
   } else {
     throw new Error('Could not retrieve coordinates.');
   }
 }
 
-async function fetchWeatherData(location) {
-  // const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${postcode}&appid=${apiKey}&units=metric`);
-  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&exclude=minutely&appid=${apiKey}&units=metric`);
+async function fetchWeatherData(coordinates) {
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${openWeatherApiKey}&units=metric`);
   const data = await response.json();
 
   if (response.ok) {
@@ -136,12 +140,18 @@ async function fetchWeatherData(location) {
 function displayWeather(data) {
   const weatherResult = document.getElementById('weatherResult');
 
-  const description = data.current.weather[0].description;
-  const temperature = data.current.temp;
-  const cityName = data.timezone;
+  const description = data.weather[0].description;
+  const temperature = data.main.temp;
+  const cityName = data.name;
+  const humidity = data.main.humidity;
+  const visibility = data.visibility;
+  const windSpeed = data.wind.speed;
 
   weatherResult.innerHTML = `<p>Weather in ${cityName}: ${description}</p>
-                            <p>Temperature: ${temperature}°C</p>`;
+                            <p>Temperature: ${temperature}°C</p>
+                            <p>Humidity: ${humidity}%</p>
+                            <p>Visibility: ${visibility} meters</p>
+                            <p>Wind Speed: ${windSpeed} m/s</p>`;
 }
 
 function displayError(message) {
