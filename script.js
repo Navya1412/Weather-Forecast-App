@@ -116,7 +116,7 @@ async function getWeather() {
 }
 
 async function getCoordinates(postcode) {
-  const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${postcode}, Australia`);
+  const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${postcode}, Australia`); //referred to ChatGPT
   const data = await response.json();
 
   if (response.ok && data.length > 0) {
