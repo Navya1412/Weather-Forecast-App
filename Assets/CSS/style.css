@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 body {
   background-image: linear-gradient(to bottom, #b81353, #b00064, #a10076, #89008a, #65159c);
@@ -8,6 +9,8 @@ body {
 
 body h1{
   font-family: 'AR One Sans', sans-serif ;
+  font-size: 2.5rem;
+  padding-bottom: 10px;
 }
 
 div {
@@ -15,25 +18,32 @@ div {
 }
 
 .container {
-  max-width: 400px;
+  max-width: 500px;
   margin:150px auto;
   padding: 20px;
   border: 5px solid #ccc;
+  align-items: center;
   /* From https://css.glass */
-background: rgba(255, 255, 255, 0.50);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(9.1px);
--webkit-backdrop-filter: blur(9.1px);
-border: 1px solid rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.50);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.1px);
+  -webkit-backdrop-filter: blur(9.1px);
+  border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.container p{
+  padding-bottom: 40px;
 }
 
 label {
+  font-size: 1rem;
   display: block;
   margin-bottom: 10px;
 }
 
 input {
+  font-family: 'Roboto Mono', monospace;
   width: 90%;
   padding: 10px;
   margin-bottom: 10px;
@@ -46,6 +56,7 @@ input {
 }
 
 button {
+  font-family: 'Onest', sans-serif;
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.34);
   border-radius: 16px;
@@ -58,3 +69,15 @@ button {
 #weatherResult {
   margin-top: 20px;
 }
+
+.results{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 0.8rem;
+  line-height: 2rem;
+}
+
+
+
+
+

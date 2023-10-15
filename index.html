@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Forecast</title>
+  <link rel="stylesheet" href="Assets/CSS/reset.css">
   <link rel="stylesheet" href="Assets/CSS/style.css">
 </head>
 <body>
   <div class="container">
     <h1>What's The Weather Like?</h1>
-    <label for="postcodeInput">Enter Postcode:</label>
-    <input type="text" id="postcodeInput" placeholder="Enter postcode" class="box">
-    <button onclick="getWeather()">Get Weather</button>
+    <p> Curious to find out what the current weather conditions are at a particular location?</p>
+    <label for="postcodeInput">Enter a Postcode or a City Name:</label>
+    <input type="text" id="postcodeInput" placeholder="Postcode or City" class="box">
+    <button onclick="getWeather()">Find Out!</button>
     <div id="weatherResult" class="results"></div>
   </div>
 
