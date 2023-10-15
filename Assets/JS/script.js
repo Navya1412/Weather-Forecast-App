@@ -137,19 +137,20 @@ async function fetchWeatherData(coordinates) {
   }
 }
 
-function changeBackground(temperature){
-  const weatherResult = document.getElementById('weatherResult');
+// the next set of codes are to get the background color to changed based on the current temperature but for sure reason they do not seem to work
+// function changeBackground(temperature){
+//   const weatherResult = document.getElementById('weatherResult');
 
-  if(temperature>=30){
-    weatherResult.style.background = 'linear-gradient(to bottom, #b81313, #be3e0d, #c35a0d, #c67315, #c88a25)' ;
-  } else if (temperature>=20){
-    weatherResult.style.background = 'linear-gradient(to top, #6bd3f2, #2fbcf2, #00a3f1, #0087eb, #3c68dc)' ;
-  } else if (temperature>=10){
-    weatherResult.style.background = 'linear-gradient(to top, #5760d7, #5059d9, #4a52da, #434bdb, #3c43dc)' ;
-  } else {
-    weatherResult.style.background = 'linear-gradient(to bottom, #000a93, #1e0a96, #2d0b99, #3a0b9b, #450c9e)' ;
-  }
-}
+//   if(temperature>=30){
+//     weatherResult.style.background = 'linear-gradient(to bottom, #b81313, #be3e0d, #c35a0d, #c67315, #c88a25)' ;
+//   } else if (temperature>=20){
+//     weatherResult.style.background = 'linear-gradient(to top, #6bd3f2, #2fbcf2, #00a3f1, #0087eb, #3c68dc)' ;
+//   } else if (temperature>=10){
+//     weatherResult.style.background = 'linear-gradient(to top, #5760d7, #5059d9, #4a52da, #434bdb, #3c43dc)' ;
+//   } else {
+//     weatherResult.style.background = 'linear-gradient(to bottom, #000a93, #1e0a96, #2d0b99, #3a0b9b, #450c9e)' ;
+//   }
+// }
 
 function displayWeather(data) {
   const weatherResult = document.getElementById('weatherResult');
