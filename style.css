@@ -2,7 +2,7 @@
 
 body {
   font-family: 'AR One Sans', sans-serif ;
-  background-image: linear-gradient(to bottom, #7c0433, #891b2c, #932f25, #99421d, #9c5515);
+  background-image: linear-gradient(to bottom, #b81353, #b00064, #a10076, #89008a, #65159c);
   background-attachment: fixed;
 }
 
@@ -11,6 +11,13 @@ body {
   margin:150px auto;
   padding: 20px;
   border: 5px solid #ccc;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.34);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 label {
