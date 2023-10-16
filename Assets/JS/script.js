@@ -161,18 +161,28 @@ function displayWeather(data) {
   const humidity = data.main.humidity;
   const visibility = data.visibility;
   const windSpeed = data.wind.speed;
+  const rainVol = data.rain;
+  const time = data.timezone;
+  const sunrise = data.sys.sunrise;
+  const sunset = data.sys.sunset;
+  const minTemp = data.main.temp_min;
+  const maxTemp = data.main.temp_max;
 
   weatherResult.innerHTML = `<p>Weather in ${cityName}: </p>
                             <p>${description}</p>
-                            <p>Temperature: ${temperature}°C</p>
+                            <p>Temperature: ${temperature}&degC</p>
                             <p>Humidity: ${humidity}%</p>
                             <p>Visibility: ${visibility} meters</p>
-                            <p>Wind Speed: ${windSpeed} m/s</p>`;
+                            <p>Wind Speed: ${windSpeed} m/s</p>
+                            <p>Rain Volume: ${rainVol} </p>
+                            <p>Time Zone: ${time}</p>
+                            <p>Sunrise: ${sunrise}</p>
+                            <p>Sunset: ${sunset}</p>
+                            <p>Minimum Temperature: ${minTemp}&degC</p>
+                            <p>Maximum Temperature: ${maxTemp}&degC</p>`;
 }
 
 function displayError(message) {
   const weatherResult = document.getElementById('weatherResult');
   weatherResult.innerHTML = `<p style="color: red;">${message}</p>`;
 }
-
-
